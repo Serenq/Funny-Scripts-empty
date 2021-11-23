@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta charset="UTF-8">
+    <title>Линейная анимация</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="style/style.css">
+    <!--[if lt IE 9]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+</head>
+
+<body>
+    
+    <div class="someBlock1"></div>
+    <div class="someBlock2"></div>
+    <div class="someBlock3"></div>
+
+</body>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<!-- scripty -->
+<script src="js/siteScripts.js"></script>
+
+<script>
+    
+    $(".someBlock1").animatoriq({
+        speed: 3600,
+        easeName: "easeOutCubic"
+    });
+
+    $(".someBlock2").animatoriq();
+    $(".someBlock3").animatoriq({speed: 600});
+    
+</script>
+
+</html>
