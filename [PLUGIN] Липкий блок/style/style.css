@@ -1,0 +1,65 @@
+body {
+    height: 4000px;
+    font-size: 0;
+    background-color: rgb(236, 255, 225);
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+[class^="container"]{
+    width: 20%;
+    height: 800px;
+    display: inline-block;
+    outline: 1px solid #000;
+    vertical-align: top;
+    text-align: justify;
+    font-size: 0;
+    position: relative;
+}
+
+.container_1 {
+    height: 1300px;
+    background-color: rgb(255, 205, 139);
+    margin: 300px 0 0 0;
+}
+.container_3 {
+    height: 1800px;
+    background-color: rgb(225, 255, 156);
+    margin: 900px 0 0 0;
+}
+.container_4 {
+    height: 2200px;
+    background-color: rgb(210, 248, 255);
+    margin: 400px 0 0 0;
+}
+.container_5 {
+    height: 2300px;
+    background-color: rgb(255, 221, 242);
+    margin: 1100px 0 400px 0;
+}
+
+.floater {
+    min-height: 120px;
+    background-color: rgb(214, 95, 95);
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.floater p {
+    margin: 0;
+    padding: 15px;
+}
+
+.floater.active {
+    width: inherit;
+    position: fixed;
+    top: 0;
+}
+.floater.active.stop {
+    width: auto;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+}
