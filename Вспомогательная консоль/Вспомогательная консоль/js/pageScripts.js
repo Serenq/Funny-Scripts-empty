@@ -1,7 +1,7 @@
 ;(function(){
     var menuStyle = {
         'height': 'auto',
-        'width': '16.666%',
+        'width': 'auto',
         'min-width': '240px',
         'background-color': '#444',
         'display': 'block',
@@ -17,87 +17,63 @@
         'z-index': 10
     };
 
-    var masterConsole = makeMasCons();
+    function masterConsole(){
+        var argLN = arguments.length;//Сколько аргументов
+        var stringIndex = [];//Позиция строки в массиве аргументов
+        var argsMas = [].slice.call(arguments);//Полноценный массив из аргументов
+        var splitter = " | ";
+        var renderedString = undefined;
+        var ID = 'id-';//Уникальный идентификатор функции
 
-    function makeMasCons(){
-        var namesId = [];
-
-        return function(){
-            var argLN = arguments.length;
-            var args = [];
-            var smartArgs = [].slice.call(arguments);
-            var splitter = " | ";
-            var actionsCount = $('#masterConsole li').length;
-            var itemsLimit = 5;
-
-            var error = function(){
-                alert('Введи данные - СТРОКА и ЧИСЛО(ЛА).\n\nТы ввёл это - masterConsole('+ smartArgs +');\nтак нельзя!\n\nНужно например так:\nmasterConsole("Pidor: ", 14, 88, 228)');
-            }
-
-            //ОШИБКИ
-            if( 
-                !arguments.length || //если нет значений
-                arguments.length <= 1 || //Если всего один аргумент
-                typeof( arguments[0] ) === 'number' //Если начинается не со строки
-            ){
-                error();
-                return;
-            }//ОШИБКИ
-
-            //проход №1
-            //Организация аргументов Имя: значения
-            for( var i = 0; i < argLN ; i++){
-                //Первый ключ - ИМЯ
-                if( i < 1 ){
-                    args[i] = arguments[i];
-                }
-                if( i >= 1 && i < 2 ){ args[i] = [];}
-                //Вторая пара - ДАННЫЕ
-                if( i >= 1 ){
-                    args[1][i-1] = arguments[i];
-                }
-            }//for
-            
-            namesId.push( args );
-
-            //проход №2
-            //Перезапись дублей
-            for( var i = 0; i < namesId.length ; i++ ){
-                var prev = (i-1 < 0 ) ? i : (i-1);
-                var currName = namesId[i][0];
-                var prevName = namesId[prev][0];                
-
-                //Если совпадает текущ. с пред. - стираем и меняем на текущ.
-                if( i > 0 && currName == prevName ){                    
-                    namesId[prev] = namesId[i];                    
-                    namesId.splice( i, 1 );
-                }
-            }//проход №2
-
-            //Очистка отработанных пунктов
-            if( namesId.length > itemsLimit ){
-                namesId.splice( 0, 1 );
-            }//Очистка отработанных пунктов
-
-            //Проход №3
-            //Создание консоли
-            if( !$('#masterConsole').length ){
-                $('body').prepend('<ul id="masterConsole"></ul>');
-                $('#masterConsole').css(menuStyle);
-            }
-
-            if( $('#masterConsole').length ){
-                $('#masterConsole > li').remove();
-                for( var i = 0; i < namesId.length ; i++ ){
-                    var merged = namesId[i][1].join(splitter);
-                    $('#masterConsole')
-                        .append('<li>'+namesId[i][0]+' : '+merged+'</li>');
-                }
-            }
-
-            return namesId;
+        function error(){
+            alert('Ошибка!\n Необходимо ввести: masterConsole("СТРОКА", цифра-событие, "строка", цифра, ...). \n Было введено это - \n masterConsole('+argsMas+')');
         }
-    }//makeMasCons
+
+        //ОШИБКИ, условия
+        //Нет выполнения консоли, не поступили аргументы.
+        if( !arguments.length ){return};
+        //Если первый аргумент цифра, а не строка.
+        if( typeof argsMas[0] !== 'string'){error(); return};
+
+        //Проход №1 - Сборка массива с разделителями
+        stringIndex.length = 0;
+        for(var i = 0;i < argLN;i++){
+            //Дописываю двоеточия :
+            if( typeof argsMas[i] == 'string' ){
+                ID += argsMas[i].replace(/ /g, '');//Идентификатор. Удалить пробелы
+
+                argsMas[i] = argsMas[i]+':';//Двоеточия
+                stringIndex.push(i);//Массив с индексами строк
+
+                //Если строк среди аргументов больше, то после первой ставится разделитель.
+                if( i > 1 ){
+                    argsMas[i] = splitter + argsMas[i];
+                }
+            }
+        }//Проход №1
+
+        //Преобразование собранного массива в читаему юстроку.
+        renderedString = argsMas.join('');
+
+        //Проход №2 - Организация HTML
+        //Если консоль не существует.
+        if( !$('#masterConsole').length ){
+            $('body')
+                .prepend('<ul id="masterConsole"></ul>');
+            $('#masterConsole').css(menuStyle);
+        }
+
+        //Если оригинальный пункт <li> с ID не существует.
+        if( !$('#masterConsole .'+ID).length ){
+            $('#masterConsole').append('<li class="'+ID+'"></li>');
+        }
+
+        $('#masterConsole .'+ID).text(renderedString);
+
+        console.log(renderedString);
+    }//masterConsole
+
+    masterConsole();
     
     window.masterConsole = masterConsole;
 }());

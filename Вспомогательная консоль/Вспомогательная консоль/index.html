@@ -21,20 +21,17 @@
     <div class="vert-align">
         <div class="vert-align__container">
             <div class="notice">
-                <p>Пошевели мышкой.</p>
-                <p>Понажимай кнопочки на клаве.</p>
+                <p>Пошевели мышкой, понажимай кнопочки на клаве.</p>
                 <p>Вывод почти любой динамической информации.</p>
-                <p>
-                    Используй в своём проекте: <br>
-                    Аргументы через запятую.
-                    <br>
-                    <br>
-                    <span class="notice__mark --orange">masterConsole("строка: ", данные, данные, ...);</span>
-                    <br>
-                    <p>Или так:</p>
-                    <span class="notice__mark --orange">masterConsole("строка: ", данные,"строка: ", данные, ...);</span>
+                <p>Аргументы через запятую.
+                    Синтаксис: "строка", евент (цифра)
                 </p>
-                <br>
+                <p>Пример:
+                    <span class="notice__mark --orange">masterConsole("строка", данные, данные, ...);</span>
+                </p>
+                <p>Или так:
+                    <span class="notice__mark --orange">masterConsole("строка", данные,"строка", данные, ...);</span>
+                </p>
 
                 <div class="notice__footer">
                     <input class="notice__accept-btn" type="button" value="Понятно">
@@ -49,12 +46,12 @@
 
 <script>
     function multiEvents(e){
-        if(e && e.type == 'mousemove') masterConsole('x: ', e.pageX, ' y: ', e.pageY);
+        if(e && e.type == 'mousemove') masterConsole('x', e.pageX, 'y', e.pageY, 'x y', e.pageX, e.pageY);
 
-        if(e && e.type == 'keypress') masterConsole('Key: ', e.which);
+        if(e && e.type == 'keypress') masterConsole('Key', e.which);
     };
 
-    $(window).on('mousemove keypress', multiEvents);
+    $(window).on('keypress mousemove', multiEvents);
 </script>
 
 </html>
