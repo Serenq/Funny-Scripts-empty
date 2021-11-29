@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Тест масетр консоли</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+
+<!--
+    <ul id="masterConsole">
+        <li>line_1</li>
+        <li>line_2</li>
+        <li>line_3</li>
+        <li>line_4</li>
+    </ul>
+-->
+
+    <div class="vert-align">
+        <div class="vert-align__container">
+            <div class="notice">
+                <p>Пошевели мышкой, понажимай кнопочки на клаве.</p>
+                <p>Вывод почти любой динамической информации.</p>
+                <p>Аргументы через запятую.
+                    Синтаксис: "строка", евент (цифра)
+                </p>
+                <p>Пример:
+                    <span class="notice__mark --orange">masterConsole("строка", данные, данные, ...);</span>
+                </p>
+                <p>Или так:
+                    <span class="notice__mark --orange">masterConsole("строка", данные,"строка", данные, ...);</span>
+                </p>
+
+                <div class="notice__footer">
+                    <input class="notice__accept-btn" type="button" value="Понятно">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/pageScripts.js"></script>
+
+<script>
+    function multiEvents(e){
+        if(e && e.type == 'mousemove') masterConsole('x', e.pageX, 'y', e.pageY);
+        if(e && e.type == 'resize') masterConsole('winWidth', window.innerWidth);
+        if(e && e.type == 'keypress') masterConsole('Key', e.which);
+    };
+
+    $(window).on('keypress mousemove resize', multiEvents);
+</script>
+
+</html>
