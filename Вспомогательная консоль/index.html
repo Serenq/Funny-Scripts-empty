@@ -21,7 +21,7 @@
     <div class="vert-align">
         <div class="vert-align__container">
             <div class="notice">
-                <p>Пошевели мышкой, понажимай кнопочки на клаве.</p>
+                <p>Пошевели мышкой, покликай мышью, понажимай кнопочки на клаве, можно поресайзить ещё.</p>
                 <p>Вывод почти любой динамической информации.</p>
                 <p>Аргументы через запятую.
                     Синтаксис: "строка", евент (цифра)
@@ -31,6 +31,9 @@
                 </p>
                 <p>Или так:
                     <span class="notice__mark --orange">masterConsole("строка", данные,"строка", данные, ...);</span>
+                </p>
+                <p>Жёстки пример:
+                    <span class="notice__mark --orange">masterConsole('winWidth', window.innerWidth, 'Клик мыши', e.which, 'x', e.pageX, ...);</span>
                 </p>
 
                 <div class="notice__footer">
@@ -45,13 +48,17 @@
 <script src="js/pageScripts.js"></script>
 
 <script>
+    document.oncontextmenu = new Function("return false;");
+    
     function multiEvents(e){
         if(e && e.type == 'mousemove') masterConsole('x', e.pageX, 'y', e.pageY);
         if(e && e.type == 'resize') masterConsole('winWidth', window.innerWidth);
         if(e && e.type == 'keypress') masterConsole('Key', e.which);
+        if(e && e.type == 'mousedown') masterConsole('Клик мыши', e.which == 1 ? "ЛКМ" : e.which == 3 ? "ПКМ" : e.which );
+        if(e && e.type == 'mousemove') masterConsole('Мультиданные курсор', e.pageX, e.pageY, e.pageX, e.pageY);
     };
 
-    $(window).on('keypress mousemove resize', multiEvents);
+    $(window).on('keypress mousemove resize mousedown', multiEvents);
 </script>
 
 </html>

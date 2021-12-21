@@ -39,16 +39,21 @@
         stringIndex.length = 0;
         for(var i = 0;i < argLN;i++){
             //Дописываю двоеточия :
-            if( typeof argsMas[i] == 'string' ){
+            if( typeof argsMas[i] == 'string' && i % 2 == 0 ){
                 ID += argsMas[i].replace(/ /g, '');//Идентификатор. Удалить пробелы
 
-                argsMas[i] = argsMas[i]+':';//Двоеточия
+                argsMas[i] = argsMas[i]+': ';//Двоеточия
                 stringIndex.push(i);//Массив с индексами строк
 
                 //Если строк среди аргументов больше, то после первой ставится разделитель.
                 if( i > 1 ){
                     argsMas[i] = splitter + argsMas[i];
                 }
+            }
+
+            if( typeof argsMas[i] == 'number' && i % i+1 >= 1 ){
+                argsMas[i] = argsMas[i] + ' ';//Двоеточия
+                stringIndex.push(i);//Массив с индексами строк
             }
         }//Проход №1
 
