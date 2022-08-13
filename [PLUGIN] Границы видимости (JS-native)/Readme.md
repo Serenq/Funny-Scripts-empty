@@ -13,6 +13,8 @@
  * bounds_visible      - bool, show red planks
  * bounds_plank_top    - value, 0 - 100, default = 30
  * bounds_plank_bottom - value, 0 - 100, default = 70
+ * customClass_in      - string, the ability to set a unique class when an element is visible
+ * customClass_out     - string, the ability to set a unique class when an element leaves the visibility zone
  * element_inSight     - foo, Do something when element is IN
  * element_outSight    - foo, Do something when element is OUT
 
