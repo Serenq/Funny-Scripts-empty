@@ -12,7 +12,7 @@ body {
     font-size: 14px;
 }
 
-.bound {
+.spot-bound {
     height: 1px;
     width: 100%;
     display: block;
@@ -38,7 +38,7 @@ body {
     transition: transform .6s;
 }
 
-.story-block > p.active {
+.story-block > p.spot-active {
     background-color: #2E9957;
     transform: scale(1.04);
 }

@@ -1,5 +1,5 @@
 /*
- * inTheSpotlight: v.1.0.0
+ * inTheSpotlight: v.1.1.0
  * Novator: Sergey Merkulov (Serenq)
  * Date: 13 aug 2022
  * 
@@ -10,6 +10,8 @@
  * bounds_visible      - bool, show red planks
  * bounds_plank_top    - val, 0 - 100, default = 30
  * bounds_plank_bottom - val, 0 - 100, default = 70
+ * customClass_in      - string, the ability to set a unique class when an element is visible
+ * customClass_out     - string, the ability to set a unique class when an element leaves the visibility zone
  * element_inSight     - foo, Do something when element is IN
  * element_outSight    - foo, Do something when element is OUT
  * 
@@ -24,6 +26,8 @@
             'bounds_visible'     : false, // Отображение красных корректирующих линий
             'bounds_plank_top'   : 30, // от 0% до 100% границ экрана. Лимит.
             'bounds_plank_bottom': 70, // от 0% до 100% границ экрана. Лимит.
+            'customClass_in'     : 'spot-active', // Уникальный клас при ВХОДЕ
+            'customClass_out'    : 'spot-outer', // Уникальный клас при ВЫХОДЕ
             'element_inSight'    : function(){}, // Сделать что либо когда блок зашёл в область
             'element_outSight'   : function(){}, // Сделать что либо когда блок вышел за пределы
         };
@@ -50,8 +54,8 @@
             let bound_1 = document.createElement('div');
             let bound_2 = document.createElement('div');
 
-            bound_1.className = 'bound --top';
-            bound_2.className = 'bound --bottom';
+            bound_1.className = 'spot-bound --top';
+            bound_2.className = 'spot-bound --bottom';
 
             document.body.prepend(bound_1, bound_2);
 
@@ -74,15 +78,15 @@
                 
                 // Елементы за пределами планок
                 if( element_fullHeight < 0 || element_top > 0 ){
-                    element.classList.add('out');
-                    element.classList.remove('active');
+                    element.classList.add(SETTINGS.customClass_out);
+                    element.classList.remove(SETTINGS.customClass_in);
                     
                     if(checkActive){SETTINGS.element_outSight()}
                 }
                 // В зоне видимости
                 else {
-                    element.classList.remove('out');
-                    element.classList.add('active');
+                    element.classList.remove(SETTINGS.customClass_out);
+                    element.classList.add(SETTINGS.customClass_in);
     
                     if(!checkActive){SETTINGS.element_inSight()}
                 }
@@ -94,7 +98,5 @@
         document.addEventListener('scroll', docOnScroll);
         window.addEventListener('resize', updateValues);
     };
-
-    document.querySelectorAll('.story-block p').inTheSpotlight();
 }());
 // Нативная плагинизация по идее
