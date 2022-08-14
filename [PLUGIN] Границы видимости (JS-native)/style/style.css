@@ -42,3 +42,17 @@ body {
     background-color: #2E9957;
     transform: scale(1.04);
 }
+
+.btn-group {
+    width: 200px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#btn-off, #btn-on {
+    width: 200px;
+    display: block;
+    margin-bottom: 10px;
+    padding: 6px 18px;
+}

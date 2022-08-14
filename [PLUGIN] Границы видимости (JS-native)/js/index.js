@@ -1,5 +1,5 @@
 /*
- * inTheSpotlight: v.1.1.0
+ * inTheSpotlight: v.1.2.0
  * Novator: Sergey Merkulov (Serenq)
  * Date: 13 aug 2022
  * 
@@ -16,7 +16,7 @@
  * element_outSight    - foo, Do something when element is OUT
  * 
  * Example:
- * document.querySelectorAll('.elements').inTheSpotlight({bounds_visible: true, bounds_plank_top: 10, element_inSight: function(){ console.log('Now you are see me!') });
+ * let inTheSpotlight = document.querySelectorAll('.elements').inTheSpotlight({bounds_visible: true, bounds_plank_top: 10, element_inSight: function(){ console.log('Now you are see me!') });
 */
 
 // Нативная плагинизация по идее
@@ -49,8 +49,7 @@
         let screenHeight = window.innerHeight;
         let chosen_elements = this;
 
-        //Показать границы
-        if(SETTINGS.bounds_visible){
+        function createRedPlanks(){
             let bound_1 = document.createElement('div');
             let bound_2 = document.createElement('div');
 
@@ -61,12 +60,18 @@
 
             bound_1.style.top = bounds_plank_top + "%";
             bound_2.style.top = bounds_plank_bottom + "%";
-        }//Показать границы
+        }
+
+        function removeRedPlanks(){
+            document
+                .querySelectorAll('.spot-bound')
+                .forEach(e => e.remove());
+        }
 
         function updateValues(){
             screenHeight = window.innerHeight;
         }
-
+        //Главная логика активности блоков
         function docOnScroll(){
             chosen_elements.forEach(function(element){
                 const boundPlank_top_percent = ((screenHeight * bounds_plank_top) / 100);
@@ -91,12 +96,37 @@
                     if(!checkActive){SETTINGS.element_inSight()}
                 }
             });
+        }//Главная логика активности блоков
+
+        function init(){
+            //Показать границы
+            if(SETTINGS.bounds_visible){
+                createRedPlanks();
+            }//Показать границы
+            
+            docOnScroll();
+
+            document.addEventListener('scroll', docOnScroll);
+            window.addEventListener('resize', updateValues);
         }
 
-        docOnScroll();
+        function destroy(){
+            chosen_elements.forEach(function(element){
+                element.classList.remove(SETTINGS.customClass_in, SETTINGS.customClass_out);
+            });
 
-        document.addEventListener('scroll', docOnScroll);
-        window.addEventListener('resize', updateValues);
+            removeRedPlanks();
+
+            document.removeEventListener('scroll', docOnScroll);
+            window.removeEventListener('resize', updateValues);
+        }
+
+        init();
+
+        return {
+            'init': init,
+            'destroy': destroy
+        }
     };
 }());
 // Нативная плагинизация по идее
