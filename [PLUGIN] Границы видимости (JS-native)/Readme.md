@@ -16,7 +16,7 @@
  * customClass_in      - string, the ability to set a unique class when an element is visible
  * customClass_out     - string, the ability to set a unique class when an element leaves the visibility zone
  * element_inSight     - foo, Do something when element is IN
- * element_outSight    - foo, Do something when element is OUT
+ * element_outSight    - foo, Do something when element is OUT 
 
 Example:
 ```
@@ -26,3 +26,12 @@ document.querySelectorAll('.elements').inTheSpotlight({
   element_inSight: function(){ console.log('Now you are see me!')
 });
 ```
+ # Внешние функции управления
+ В версии 1.2.0 - Были добавлены внешние функции управления, котоыре позволяют включать или отключать плагин когда потребуется. Не думал, что удалять хтмл-элементы на нативном JS так сложно... Что бы была возможность использовать внешние функции, придётся записывать инициализацию в переменную.
+ 
+ ```
+ let store = document.querySelectorAll('.story-block p').inTheSpotlight();
+ 
+ document.querySelector('#custom-element-off').addEventListener('click', function(){store.destroy()});
+ document.querySelector('#custom-element-on').addEventListener('click', function(){store.init()});
+ ```
