@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Condiment&display=swap');
+/* 
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Condiment', cursive;
+*/
 :root {
     --col-background: #1A1A1A;
     --col-font: #E6E6E6;
@@ -114,10 +117,45 @@ a:hover {
 .back-button:hover {
     animation: bg-blink .2s infinite linear alternate;
 }
+.back-button_position-br {
+    position: fixed;
+    bottom: 30px;right: 30px;
+}
 
 .back-button_green {background-color: var(--back-btn-bg-green);}
 
+.logo-label {
+    width: 360px;
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20px;
+    animation: breath 2s infinite ease-in-out alternate;
+}
+.logo-label__main {
+    color: #FFB200;
+    display: inline-block;
+    font-size: 142px;
+    font-family: 'Condiment', cursive;
+    transform: skew(0, -10deg);
+}
+.logo-label__phrase {
+    color: #3BBCD1;
+    display: inline-block;
+    font-size: 28px;
+    line-height: 20px;
+    position: absolute;
+    bottom: 50px; right: -22px;
+}
+
 /* KEYFRAMES */
+
+@keyframes breath {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.1);}
+}
 
 @keyframes star-spin {
     0% {transform: rotateZ(0turn);}

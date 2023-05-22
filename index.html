@@ -10,22 +10,28 @@
 <body>
     <div id="app">
         <header class="header">
-            <div class="container">Serenq</div>
+            <div class="container">
+                <div class="logo-label">
+                    <div class="logo-label__main">Serenq</div>
+                    <div class="logo-label__phrase" id="phrase">Мастерская<br>изобретателя</div>
+                </div>
+            </div>
         </header>
 
         <main class="main">
             <div class="container">
                 <h1>Мои пэт-проекты:</h1>
                 <nav class="main-menu main-menu_margins">
-                    <a class="main-menu__link" href=""><span>Задетые элементы</span></a>
-                    <a class="main-menu__link" href=""><span>Вспомогательная консоль</span></a>
-                    <a class="main-menu__link" href=""><span>Разная высота блоков</span></a>
-                    <a class="main-menu__link" href=""><span>Элемент догоняет курсор</span></a>
-                    <a class="main-menu__link" href=""><span>Скрытый анимированный текст</span></a>
-                    <a class="main-menu__link" href=""><span>Область видимости</span></a>
-                    <a class="main-menu__link" href=""><span>Пиксельный переход</span></a>
-                    <a class="main-menu__link" href=""><span>Поблоковый скрол</span></a>
-                    <a class="main-menu__link" href=""><span>Липкие блоки</span></a>
+                    <a class="main-menu__link" href="Projects/Affected elements/index.html"><span>Задетые элементы</span></a>
+                    <a class="main-menu__link" href="Projects/Auxiliary console/index.html"><span>Вспомогательная консоль</span></a>
+                    <a class="main-menu__link" href="Projects/Different height of blocks/index.html"><span>Разная высота блоков</span></a>
+                    <a class="main-menu__link" href="Projects/Element catches up with the cursor/index.html"><span>Элемент догоняет курсор</span></a>
+                    <a class="main-menu__link" href="Projects/Hidden animated text/index.html"><span>Скрытый анимированный текст</span></a>
+                    <a class="main-menu__link" href="Projects/Limits of visibility/index.html"><span>Область видимости</span></a>
+                    <a class="main-menu__link" href="Projects/Pixel transition/index.html"><span>Пиксельный переход</span></a>
+                    <a class="main-menu__link" href="Projects/Scroll by blocks/index.html"><span>Поблоковый скрол</span></a>
+                    <a class="main-menu__link" href="Projects/Sticky Blocks/index.html"><span>Липкие блоки</span></a>
+                    <a class="main-menu__link" href="Projects/Quick hidden menu/index.html"><span>Быстрое скрытое меню</span></a>
                 </nav>
             </div>
         </main>
@@ -38,5 +44,18 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        ;(function(){
+            const phrases = [
+                'Мастерская<br>изобретателя',
+                'Ведётся<br>исследование',
+                'Технологии<br>завтрашнего дня',
+                'Под грифом<br>"СЕКРЕТНО"'
+            ];
+            const phrase_elem = document.querySelector('#phrase');
+            phrase_elem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+        }());
+    </script>
 </body>
 </html>

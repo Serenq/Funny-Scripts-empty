@@ -4,7 +4,7 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: #521149;
+    background: #1A1A1A;
     font-family: monospace;
     font-size: 16px;
     line-height: 21px;
@@ -39,7 +39,7 @@ html {
 .someBloq {
     height: 200px;
     width: 300px;
-    background-color: #CC2941;
+    background-color: #00CC75;
     border: 1.5px solid transparent;
     display: inline-block;
     margin: 0 15px 15px 0;
@@ -48,18 +48,22 @@ html {
 
 .react {transition: transform .1s ease;}
 .react.top {
-    transform: translateY(10px);
+    background-color: #33ABFF;
     border-top-color: #8DCCB7;
+    transform: translateY(10px);
 }
 .react.right {
-    transform: translateX(-10px);
+    background-color: #FFE500;
     border-right-color: #8DCCB7;
+    transform: translateX(-10px);
 }
 .react.bottom {
-    transform: translateY(-10px);
+    background-color: #FF8466;
     border-bottom-color: #8DCCB7;
+    transform: translateY(-10px);
 }
 .react.left {
-    transform: translateX(10px);
+    background-color: #8733FF;
     border-left-color: #8DCCB7;
+    transform: translateX(10px);
 }

@@ -24,7 +24,7 @@ div {position: relative;}
 
 #changeColor {
     height: 30px;
-    width: 40px;
+    width: 80px;
     border: 1px solid #aaa;
     background-color: rgba(0,0,0,.75);
     display: block;
@@ -74,8 +74,6 @@ div {position: relative;}
     top: 0;
     right: 30px;
 }
-
-#fs_count {}
 
 #fs_count li {
     height: 20px;

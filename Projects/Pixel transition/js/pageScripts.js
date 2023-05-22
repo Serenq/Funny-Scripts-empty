@@ -1,4 +1,4 @@
-$(function(){
+;$(function(){
    var pixelsSet = 6;
    
    function randNum(min,max){
