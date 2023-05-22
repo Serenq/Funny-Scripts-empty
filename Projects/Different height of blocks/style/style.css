@@ -1,0 +1,46 @@
+body {
+	height: 100%;
+	width: 100%;
+	display: block;
+	margin: 0;
+	padding: 0;
+	background-color: rgb(0, 41, 2);
+	font-family: monospace, Times, serif;
+}
+
+h1 {
+	font-size: 54px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+strong {
+	font-size: 30px;
+	color: #aaa;
+}
+
+p {
+	font-size: 18px;
+	margin: 18px;
+}
+
+.randomBlox {
+	display: block;
+	position: relative;
+}
+
+.randomBlox > div {
+	background-color: rgb(27, 138, 33);
+	color: rgb(228, 255, 225);
+	display: block;
+	font-size: 22px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.randomBlox img {
+	width: 50%;
+	float: left;
+	padding: 0 15px 15px 0;
+}
