@@ -5,9 +5,127 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serenq / Мои пэт-проекты</title>
-    <link rel="stylesheet" href="css/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            position: relative;
+        }
+        html, body, #app {height: 100%;}
+        body {
+            background-color: #1A1A1A;
+            color: #E6E6E6;
+            font-family: 'Comfortaa', cursive, monospace;
+        }
+        h1 {font-size: 48px;}
+        a {
+            color: inherit;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            margin-right: 10%;
+            margin-left: 10%;
+            padding-top: 0.1px;
+            padding-bottom: 0.1px;
+        }
+
+        .main-menu {
+            font-size: 36px;
+            font-weight: bold;
+            column-count: 2;
+        }
+        .main-menu__link {
+            display: block;
+            text-decoration: none;
+            padding-left: 30px;
+            margin-bottom: 6px;
+            animation: color-spin-1 .2s infinite linear alternate;
+        }
+        .main-menu__link span {display: inline-block;transition: transform .2s ease;}
+        .main-menu__link:hover span {
+            text-decoration: underline;
+            transform: translateX(2%);
+        }
+
+        .main-menu__link::before {
+            content: "*";
+            height: 27px;
+            display: block;
+            font-size: 52px;
+            position: absolute;
+            top: 5px;bottom: 0;
+            left: 0;
+            transform-origin: center center;
+            animation: star-spin 2s infinite linear;
+        }
+
+        .main-menu_margins {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .simple-menu_margins {margin: 30px 0;}
+
+        @keyframes star-spin {
+            0% {transform: rotateZ(0turn);}
+            100% {transform: rotateZ(1turn);}
+        }
+
+        @keyframes color-spin-1 {
+            0% {color: #E6E6E6;}
+            20% {color: #FFE600;}
+            33% {color: #4BD900;}
+            66% {color: #75BCF1;}
+            75% {color: #F075E4;}
+            100% {color: #FF8094;}
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="app">
+        <header class="header">
+            <div class="container">Serenq</div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <h1>Мои пэт-проекты:</h1>
+                <nav class="main-menu main-menu_margins">
+                    <a class="main-menu__link" href=""><span>Задетые элементы</span></a>
+                    <a class="main-menu__link" href=""><span>Вспомогательная консоль</span></a>
+                    <a class="main-menu__link" href=""><span>Разная высота блоков</span></a>
+                    <a class="main-menu__link" href=""><span>Элемент догоняет курсор</span></a>
+                    <a class="main-menu__link" href=""><span>Скрытый анимированный текст</span></a>
+                    <a class="main-menu__link" href=""><span>Область видимости</span></a>
+                    <a class="main-menu__link" href=""><span>Пиксельный переход</span></a>
+                    <a class="main-menu__link" href=""><span>Поблоковый скрол</span></a>
+                    <a class="main-menu__link" href=""><span>Липкие блоки</span></a>
+                </nav>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <nav class="simple-menu simple-menu_margins">
+                    <a href="">О проекте</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
