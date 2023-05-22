@@ -84,7 +84,6 @@ a:hover {
     display: block;
     font-size: 52px;
     position: absolute;
-    top: 5px;bottom: 0;
     left: 0;
     transform-origin: center center;
     animation: star-spin 2s infinite linear;
@@ -94,6 +93,7 @@ a:hover {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.main-menu_font-24 {font-size: 24px;}
 
 .simple-menu {
     columns: 4;
