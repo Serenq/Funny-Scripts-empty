@@ -141,7 +141,7 @@ a:hover {
 .logo-label_anim-breath {animation: breath 2s infinite ease-in-out alternate;}
 
 .logo-label__main {
-    color: #FFB200;
+    color: #A87600;
     display: inline-block;
     font-size: 142px;
     font-family: 'Condiment', cursive;
@@ -161,7 +161,7 @@ a:hover {
     display: inline-block;
     position: relative;
 }
-.logo-label_regular .logo-label__main {font-size: 50px;}
+.logo-label_regular .logo-label__main {color:#FFB200;font-size: 50px;}
 .logo-label_regular .logo-label__phrase {display: none;}
 
 /* KEYFRAMES */
