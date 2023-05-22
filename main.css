@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');        
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+:root {
+    --col-background: #1A1A1A;
+    --col-font: #E6E6E6;
+    --back-btn-bg-green: #42D500;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +14,20 @@
 }
 html, body, #app {height: 100%;}
 body {
-    background-color: #1A1A1A;
-    color: #E6E6E6;
+    background-color: var(--col-background);
+    color: var(--col-font);
     font-family: 'Comfortaa', cursive, monospace;
 }
-h1 {font-size: 48px;}
+h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+p ~ p {margin-top: 20px;}
 a {
     color: inherit;
+}
+a:hover {
+    animation: color-blink .2s infinite linear alternate;
 }
 
 #app {
@@ -36,6 +50,13 @@ a {
     padding-bottom: 0.1px;
 }
 
+.group_read {
+    text-align: justify;
+    text-indent: 8%;
+    columns: 2;
+    column-gap: 40px;
+}
+
 .main-menu {
     font-size: 36px;
     font-weight: bold;
@@ -46,7 +67,7 @@ a {
     text-decoration: none;
     padding-left: 30px;
     margin-bottom: 6px;
-    animation: color-spin-1 .2s infinite linear alternate;
+    animation: color-blink .2s infinite linear alternate;
 }
 .main-menu__link span {display: inline-block;transition: transform .2s ease;}
 .main-menu__link:hover span {
@@ -70,19 +91,52 @@ a {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
 .simple-menu_margins {margin: 30px 0;}
+
+.element-aligner {
+    display: flex;
+}
+.element-aligner_right {
+    justify-content: end;
+}
+.element-aligner_margins {
+    margin-top: 40px;
+}
+
+.back-button {
+    background-color: var(--back-btn-bg);
+    color: var(--col-background);
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 22px;
+    text-decoration: none;
+}
+.back-button:hover {
+    animation: bg-blink .2s infinite linear alternate;
+}
+
+.back-button_green {background-color: var(--back-btn-bg-green);}
+
+/* KEYFRAMES */
 
 @keyframes star-spin {
     0% {transform: rotateZ(0turn);}
     100% {transform: rotateZ(1turn);}
 }
 
-@keyframes color-spin-1 {
+@keyframes color-blink {
     0% {color: #E6E6E6;}
     20% {color: #FFE600;}
     33% {color: #4BD900;}
     66% {color: #75BCF1;}
     75% {color: #F075E4;}
     100% {color: #FF8094;}
+}
+@keyframes bg-blink {
+    0% {background-color: #E6E6E6;}
+    20% {background-color: #FFE600;}
+    33% {background-color: #4BD900;}
+    66% {background-color: #75BCF1;}
+    75% {background-color: #F075E4;}
+    100% {background-color: #FF8094;}
 }
