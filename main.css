@@ -132,8 +132,9 @@ a:hover {
     left: 0;
     right: 0;
     top: 20px;
-    animation: breath 2s infinite ease-in-out alternate;
 }
+.logo-label_anim-breath {animation: breath 2s infinite ease-in-out alternate;}
+
 .logo-label__main {
     color: #FFB200;
     display: inline-block;
@@ -149,6 +150,14 @@ a:hover {
     position: absolute;
     bottom: 50px; right: -22px;
 }
+
+.logo-label_regular {
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+.logo-label_regular .logo-label__main {font-size: 50px;}
+.logo-label_regular .logo-label__phrase {display: none;}
 
 /* KEYFRAMES */
 

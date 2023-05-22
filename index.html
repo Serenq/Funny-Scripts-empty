@@ -11,10 +11,10 @@
     <div id="app">
         <header class="header">
             <div class="container">
-                <div class="logo-label">
-                    <div class="logo-label__main">Serenq</div>
-                    <div class="logo-label__phrase" id="phrase">Мастерская<br>изобретателя</div>
-                </div>
+                <a class="logo-label logo-label_anim-breath">
+                    <p class="logo-label__main">Serenq</p>
+                    <p class="logo-label__phrase" id="phrase">Мастерская<br>изобретателя</p>
+                </a>
             </div>
         </header>
 
@@ -54,7 +54,12 @@
                 'Под грифом<br>"СЕКРЕТНО"'
             ];
             const phrase_elem = document.querySelector('#phrase');
-            phrase_elem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+            
+            function phraseRand(){
+                phrase_elem.innerHTML = phrases[Math.floor(Math.random() * phrases.length)];
+            }
+
+            setInterval(phraseRand, 3000);
         }());
     </script>
 </body>
