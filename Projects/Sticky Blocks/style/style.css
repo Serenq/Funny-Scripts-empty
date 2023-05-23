@@ -4,7 +4,7 @@ body {
     background-color: #1A1A1A;
     margin: 0;
     padding: 0;
-    padding-bottom: 500px;
+    padding-bottom: 300px;
     font-family: monospace;
 }
 
@@ -73,6 +73,13 @@ body {
 @media (max-width: 1025px){
     .owner {
         width: 33.333%;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 426px){
+    .owner {
+        width: 100%;
         margin-top: 0;
     }
 }

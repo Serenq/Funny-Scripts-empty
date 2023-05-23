@@ -14,8 +14,6 @@
             var touchTop = winScrollTop - parentOfTop;
             var touchBottom = (winScrollTop - parentOfTop) - parentHeight + objHeight;
 
-            console.log($(this).parent().index(), touchBottom);
-
             if( touchTop >= 0 ){
                 $(this).addClass('active');
                 if( touchBottom >= 0 ){
