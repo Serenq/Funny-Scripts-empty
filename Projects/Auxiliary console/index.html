@@ -46,17 +46,17 @@
     <a class="back-button back-button_green back-button_position-br" href="../../index.html">Назад</a>
 </body>
 <script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/pageScripts.js"></script>
+<script src="js/masterConsole.js"></script>
 
 <script>
     document.oncontextmenu = new Function("return false;");
     
     function multiEvents(e){
-        if(e && e.type == 'mousemove') masterConsole('x', e.pageX, 'y', e.pageY);
-        if(e && e.type == 'resize') masterConsole('winWidth', window.innerWidth);
-        if(e && e.type == 'keypress') masterConsole('Key', e.which, 'Кнопка', e.key);
-        if(e && e.type == 'mousedown') masterConsole('Клик мыши', e.which == 1 ? "ЛКМ" : e.which == 3 ? "ПКМ" : e.which );
-        if(e && e.type == 'mousemove') masterConsole('Мультиданные курсор', e.pageX, e.pageY, e.pageX, e.pageY);
+        if(e && e.type == 'mousemove') new MasterConsole('x', e.pageX, 'y', e.pageY);
+        if(e && e.type == 'resize') new MasterConsole('winWidth', window.innerWidth);
+        if(e && e.type == 'keypress') new MasterConsole('Key', e.which, 'Кнопка', e.key);
+        if(e && e.type == 'mousedown') new MasterConsole('Клик мыши', e.which == 1 ? "ЛКМ" : e.which == 3 ? "ПКМ" : e.which );
+        if(e && e.type == 'mousemove') new MasterConsole('Мультиданные курсор', e.pageX, e.pageY, e.pageX, e.pageY);
     };
 
     $(window).on('keypress mousemove resize mousedown', multiEvents);
