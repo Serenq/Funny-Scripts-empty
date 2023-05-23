@@ -23,18 +23,18 @@ body {
 }
 
 .story-block {
-    width: 45%;
+    max-width: 1200px;
     display: block;
-    margin: auto;
+    margin: 0 auto;
     color: #ddd;
-    padding: 30px 0;
+    padding: 30px;
 }
 
 .story-block > p {
     background-color: #5895B7;
     padding: 20px 60px;
     margin-bottom: 20px;
-
+    
     transition: transform .6s;
 }
 
@@ -48,6 +48,7 @@ body {
     position: fixed;
     top: 10px;
     left: 10px;
+    z-index: 10;
 }
 
 #btn-off, #btn-on {
@@ -55,4 +56,9 @@ body {
     display: block;
     margin-bottom: 10px;
     padding: 6px 18px;
+}
+
+
+@media(max-width: 768px){
+    .story-block > p {padding: 30px 10px;}
 }
