@@ -23,9 +23,9 @@ p {
 }
 
 .container {
+    max-width: 1200px;
     display: flex;
     background-color: #22263A;
-    margin: 0 200px;
     text-align-last: left;
 }
 
@@ -66,4 +66,8 @@ p {
 ._mod_container_txt-alg-left {
     vertical-align: top;
     padding: 60px 20px;
+}
+
+@media (max-width: 1025px){
+    .container {margin: 0 20px;}
 }
