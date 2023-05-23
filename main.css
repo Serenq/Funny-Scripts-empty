@@ -15,7 +15,10 @@
     box-sizing: border-box;
     position: relative;
 }
-html, body, #app {height: 100%;}
+html, body, #app {
+    height: 100%;
+    min-width: 320px;
+}
 body {
     background-color: var(--col-background);
     color: var(--col-font);
@@ -36,7 +39,13 @@ a:hover {
 #app {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: stretch;
+}
+
+.header,
+.footer
+{
+    flex: 0 0 auto;
 }
 
 .main {
@@ -93,7 +102,7 @@ a:hover {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.main-menu_font-24 {font-size: 24px;}
+.main-menu_font-smaall {font-size: 24px;}
 
 .simple-menu {
     columns: 4;
@@ -133,9 +142,7 @@ a:hover {
     width: 360px;
     display: block;
     margin: auto;
-    position: absolute;
-    left: 0;
-    right: 0;
+    text-align: center;
     top: 20px;
 }
 .logo-label_anim-breath {animation: breath 2s infinite ease-in-out alternate;}
@@ -191,4 +198,23 @@ a:hover {
     66% {background-color: #75BCF1;}
     75% {background-color: #F075E4;}
     100% {background-color: #FF8094;}
+}
+
+@media (max-width: 821px){
+    .main-menu,
+    .simple-menu,
+    .group_read
+    {
+        columns: auto;
+    }
+}
+
+@media (max-width: 426px){
+    h1 {font-size: 28px;}
+    .main-menu {font-size: 24px;}
+    .main-menu_font-smaall {font-size: 18px;}
+    .main-menu__link::before {height: 15px;font-size: 28px;}
+    .logo-label {top: auto;}
+    .logo-label__main {font-size: 90px;}
+    .logo-label__phrase {display: none;}
 }
