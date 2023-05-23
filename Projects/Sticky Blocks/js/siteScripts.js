@@ -1,7 +1,7 @@
 ;(function(){
     $.fn.aliveFloater = function(options){
         var thisObject = this;
-        var winOfTop = $(document).scrollTop();
+        var winScrollTop = $(document).scrollTop();
 
         var defaults = {}
 
@@ -11,9 +11,10 @@
             var parentOfTop = $(this).parent().offset().top;
             var parentHeight = $(this).parent().height();
             var objHeight = $(this).outerHeight();
-            var marginVal = parseInt( $(this).parent().css("margin-top") );
-            var touchTop = winOfTop - parentOfTop;
-            var touchBottom = (winOfTop + objHeight - marginVal ) - parentHeight;
+            var touchTop = winScrollTop - parentOfTop;
+            var touchBottom = (winScrollTop - parentOfTop) - parentHeight + objHeight;
+
+            console.log($(this).parent().index(), touchBottom);
 
             if( touchTop >= 0 ){
                 $(this).addClass('active');
@@ -31,8 +32,8 @@
 
         thisObject.each(floaterReady);
 
-        $(window).on('scroll',function(){
-            winOfTop = $(document).scrollTop();
+        $(window).on('scroll resize',function(){
+            winScrollTop = $(document).scrollTop();
 
             thisObject.each(floaterReady);
         });

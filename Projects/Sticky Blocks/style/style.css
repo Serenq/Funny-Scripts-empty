@@ -1,13 +1,14 @@
 body {
-    height: 4000px;
+    height: auto;
     font-size: 0;
     background-color: #1A1A1A;
     margin: 0;
     padding: 0;
+    padding-bottom: 500px;
     font-family: monospace;
 }
 
-[class^="container"]{
+.owner {
     width: 20%;
     height: 800px;
     display: inline-block;
@@ -18,30 +19,30 @@ body {
     position: relative;
 }
 
-.container_1 {
+.owner__item-1 {
     height: 1300px;
     background-color: #FF3400;
-    margin: 300px 0 0 0;
+    margin-top: 300px;
 }
-.container_2 {
+.owner__item-2 {
     height: 1300px;
     background-color: #FF8000;
-    margin: 50px 0 0 0;
+    margin-top: 50px;
 }
-.container_3 {
+.owner__item-3 {
     height: 1800px;
     background-color: #FFB300;
-    margin: 900px 0 0 0;
+    margin-top: 900px;
 }
-.container_4 {
+.owner__item-4 {
     height: 2200px;
     background-color: #FFE600;
-    margin: 400px 0 0 0;
+    margin-top: 400px;
 }
-.container_5 {
+.owner__item-5 {
     height: 2300px;
     background-color: #D9F200;
-    margin: 1100px 0 400px 0;
+    margin-top: 1100px;
 }
 
 .floater {
@@ -67,4 +68,11 @@ body {
     position: absolute;
     top: auto;
     bottom: 0;
+}
+
+@media (max-width: 1025px){
+    .owner {
+        width: 33.333%;
+        margin-top: 0;
+    }
 }
