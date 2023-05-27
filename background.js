@@ -66,6 +66,6 @@ function resize(){
     h = canvas.height = window.innerHeight;
 }
 
-flaresCount(256);
+flaresCount(128);
 animate();
 window.addEventListener('resize', resize);
