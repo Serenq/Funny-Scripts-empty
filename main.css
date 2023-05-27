@@ -36,6 +36,12 @@ a {
     animation: color-blink .2s infinite linear alternate;
 }
 
+#canvas {
+    position: fixed;
+    top: 0;left: 0;
+    z-index: -1;
+}
+
 #app {
     display: flex;
     flex-direction: column;
