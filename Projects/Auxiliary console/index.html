@@ -56,6 +56,8 @@
         if(e && e.type == 'resize') new MasterConsole('winWidth', window.innerWidth);
         if(e && e.type == 'keypress') new MasterConsole('Key', e.which, 'Кнопка', e.key);
         if(e && e.type == 'mousedown') new MasterConsole('Клик мыши', e.which == 1 ? "ЛКМ" : e.which == 3 ? "ПКМ" : e.which );
+        if(e && e.type == 'mousedown') new MasterConsole('Элемент', e.target.nodeName );
+        if(e && e.type == 'mousedown') new MasterConsole( e.target.nodeName );
         if(e && e.type == 'mousemove') new MasterConsole('Мультиданные курсор', e.pageX, e.pageY, e.pageX, e.pageY);
     };
 
