@@ -7,6 +7,7 @@
     --col-background: #1A1A1A;
     --col-font: #E6E6E6;
     --back-btn-bg-green: #42D500;
+    --back-btn-bg-orange: #FC8100;
 }
 
 * {
@@ -126,6 +127,16 @@ a {
     margin-top: 40px;
 }
 
+.fixed-bottom-navigation {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 0 30px;
+    position: fixed;
+    bottom: 30px;
+}
+
 .back-button {
     background-color: var(--back-btn-bg);
     color: var(--col-background);
@@ -137,12 +148,20 @@ a {
 .back-button:hover {
     animation: bg-blink .2s infinite linear alternate;
 }
-.back-button_position-br {
-    position: fixed;
-    bottom: 30px;right: 30px;
-}
 
 .back-button_green {background-color: var(--back-btn-bg-green);}
+.back-button_orange {background-color: var(--back-btn-bg-orange);}
+
+.back-button_code::before,
+.back-button_code::after {
+    content: "${";
+    display: inline-block;
+    font-weight: bold;
+    font-size: inherit;
+}
+.back-button_code::after {
+    content: "};";
+}
 
 .logo-label {
     width: 360px;
