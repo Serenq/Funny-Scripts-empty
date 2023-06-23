@@ -1,71 +1,132 @@
-/* Замутил анимашку на канвасе! 27 мая 2023 */
+/*
+ * "Светлячки" by Serenq / 21 июля 2023
+ * От автора: Уебался делать ускорение и фиксить торможение. Решение нашлось в кастомной, всё время обновляемой временной метке.
+*/
 
 const canvas = document.querySelector('#canvas');
 const cx = canvas.getContext('2d');
 
-const color_bg = '#1A1A1A';
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-let flaresArr = [];
+const config = {
+    count: 400,
+    size: 4,
+    speed: 400,
+    deceleration: 1.05,
+    deadLine: .8,
+    colorBg: '#11121C',
+    colorPart: 'rgba(255, 100, 100, 1)',
+    timeNow: 0,
+    timePassed: 0,
+}
 
-class Flare {
+let particlesArr = [];
+
+class Particle {
     constructor(){
-        this.props();
+        setTimeout(() => {
+            this.remap();
+        }, Math.random() * 5000);
+
+        function resize(){
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.removeEventListener('resize', resize);
+        window.addEventListener('resize', resize);
     }
 
-    props(){
-        this.lifeTime = Math.random() * (6 - .6) + .6;
-        this.lifeTimer = Math.round((this.lifeTime / 10) * 10);
-        this.lifeLimit = Math.random() * 3 + 10;
-        this.alpha = 1;
-        this.size = this.lifeTime / 2;
-        this.velocity = this.size * 3;
-        this.x = Math.round(Math.random() * w);
-        this.y = Math.round(Math.random() * h);
-        this.dx = Math.random() * (.4 + .2) - .2;
-        this.dy = Math.random() * (.4 + .2) - .2;
+    remap = ()=>{
+        this.timeStamp = new Date().getTime();
+        this.timePassed = 0;
+        this.timeDelay = Math.random() * 5;
+        this.color = Math.floor(Math.random() * 360);
+        this.size = config.size || 10;
+        this.x = Math.random() * canvas.width + this.size/2 + 30;
+        this.y = Math.random() * canvas.height + this.size/2 + 30;
+        this.dx = (Math.random() * (-.1 - .1) + .1);
+        this.dy = (Math.random() * (-.1 - .1) + .1);
+        this.speedCut = 0.5;
+        this.speed = Math.random() * (170 - config.speed) + config.speed;
+        this.dSpeed = 0;
+
+        return this;
     }
 
-    draw(){
+    draw = ()=>{
         cx.beginPath();
-        cx.fillStyle = `rgba(255, 99, 0, ${this.alpha})`;
-        cx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+        cx.fillStyle = config.colorPart;
+        cx.miterLimit = 1;
+        cx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        cx.fillStyle = `hsla(
+            ${this.color},
+            80%,
+            ${(this.dSpeed / this.speed) * 60 + 12}%,
+            ${(this.dSpeed / this.speed) + .2}
+        )`;
         cx.fill();
+        cx.closePath();
         return this;
     }
 
-    update(){
-        this.x += this.velocity * this.dx;
-        this.y += this.velocity * this.dy;
-        this.lifeTimer += .02;
-        this.alpha = this.lifeLimit - (this.lifeTimer / this.lifeLimit) * this.lifeLimit;
-        if(this.x - this.velocity <= 0 || this.x + this.velocity >= w){this.dx *= -1}
-        if(this.y - this.velocity <= 0 || this.y + this.velocity >= h){this.dy *= -1}
-        if(this.lifeTimer >= this.lifeLimit){this.props()}
+    update = (fps)=>{
+        this.timePassed = (new Date().getTime() - this.timeStamp) / 1000;
+        this.x += this.dx * this.dSpeed * fps;
+        this.y += this.dy * this.dSpeed * fps;
+        this.dx += this.dSpeed * fps * Math.cos(this.dx * this.x) * .05;
+        this.dy += this.dSpeed * fps * Math.sin(this.dy * this.y) * .05;
+
+        if(this.dSpeed < this.speed && this.timePassed < config.deadLine){this.dSpeed += 10}
+
+        if(this.timePassed >= config.deadLine){
+            this.dSpeed /= config.deceleration;
+            if(this.dSpeed <= 5 ){
+                if( this.timePassed - this.timeDelay > 0){this.remap();}
+            }
+        }
+
+        if(
+            this.x - this.size < 0
+            && this.dx < 0
+            || this.x + this.size > canvas.width
+            && this.dx > 0
+        ){
+            this.dSpeed *= this.speedCut;
+            this.dx = -this.dx;
+        }
+
+        if(
+            this.y + this.dy - this.size < 0
+            && this.dy < 0
+            || this.y + this.dy + this.size > canvas.height
+            && this.dy > 0
+        ){
+            this.dSpeed *= this.speedCut;
+            this.dy = -this.dy;
+        }
         return this;
     }
 }
 
-function flaresCount(par){
-    for(let i = 0; i < par; i++){
-        flaresArr.push(new Flare());
-    }
+function particleCount(par){
+    for(let i = 1; i <= par; i++){particlesArr.push(new Particle())}
+    animate();
+    console.log(`%c"Светлячки" by Serenq / 21 июля 2023`, "color: #ace600; font-style: italic; background-color: #444; padding: 0 20px");
 }
 
-function animate(){
-    cx.fillStyle = color_bg;
-    cx.fillRect(0, 0, w, h);
-
-    flaresArr.map((item)=>item.draw().update());
-    
+function animate(stamp=0){
     requestAnimationFrame(animate);
+    
+    cx.clearRect(0,0,canvas.width, canvas.height);
+
+    config.timeNow = stamp - config.timePassed;
+    if(config.timeNow < 30){
+        particlesArr.map(item => {
+            item.draw().update(config.timeNow/1000);
+        });
+    }
+    config.timePassed = stamp;
 }
 
-function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-}
-
-flaresCount(128);
-animate();
-window.addEventListener('resize', resize);
+document.addEventListener("DOMContentLoaded", function(event) { 
+    particleCount(config.count);
+});
