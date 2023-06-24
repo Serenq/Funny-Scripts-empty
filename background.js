@@ -5,6 +5,9 @@
 
 const canvas = document.querySelector('#canvas');
 const cx = canvas.getContext('2d');
+let particlesArr = [];
+let animateID = null;
+console.log(`%c"Светлячки" by Serenq / 21 июля 2023`, "color: #ace600; font-style: italic; background-color: #444; padding: 0 20px");
 
 const config = {
     count: 400,
@@ -18,21 +21,11 @@ const config = {
     timePassed: 0,
 }
 
-let particlesArr = [];
-
 class Particle {
     constructor(){
         setTimeout(() => {
             this.remap();
         }, Math.random() * 5000);
-
-        function resize(){
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-        window.removeEventListener('resize', resize);
-        window.addEventListener('resize', resize);
     }
 
     remap = ()=>{
@@ -108,13 +101,13 @@ class Particle {
 }
 
 function particleCount(par){
+    particlesArr.length = 0;
     for(let i = 1; i <= par; i++){particlesArr.push(new Particle())}
     animate();
-    console.log(`%c"Светлячки" by Serenq / 21 июля 2023`, "color: #ace600; font-style: italic; background-color: #444; padding: 0 20px");
 }
 
 function animate(stamp=0){
-    requestAnimationFrame(animate);
+    animateID = requestAnimationFrame(animate);
     
     cx.clearRect(0,0,canvas.width, canvas.height);
 
@@ -127,6 +120,20 @@ function animate(stamp=0){
     config.timePassed = stamp;
 }
 
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    cancelAnimationFrame(animateID);
+    cx.clearRect(0,0,canvas.width,canvas.height);
+
+    if(window.innerWidth > 1024){particleCount(config.count);}
+    if(window.innerWidth > 768 && window.innerWidth < 1024){particleCount(140);}
+    if(window.innerWidth < 768){particleCount(70);}
+}
+
+window.removeEventListener('resize', resize);
+window.addEventListener('resize', resize);
+
 document.addEventListener("DOMContentLoaded", function(event) { 
-    particleCount(config.count);
+    resize();
 });
